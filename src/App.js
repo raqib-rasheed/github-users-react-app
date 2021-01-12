@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Charts from './components/charts';
+import UserCard from './components/user-card';
+import UserStats from './components/user-stats';
 
 function App() {
+
+  const [user,setUser] = React.useState({})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+  
+  {/* <Charts setUser={setUser} user={user} />
+  <UserCard user={user} /> */}
+
+  <UserStats />
+
+  </div>
   );
 }
 
 export default App;
+
