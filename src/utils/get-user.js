@@ -1,37 +1,19 @@
 import axios from 'axios'
 
 
-export async function getUsers(user){
-  let data={}
-  await axios.get(`https://api.github.com/users/${user}`).then(resp => {
-    data=resp;
-  })
+export async function getUser(user){
+  let data= await axios.get(`https://api.github.com/users/${user}`)
   return data
 }
 
 export async function getAvatar(userId){
   const url = `https://avatars2.githubusercontent.com/u/${userId}`
-  let avatar='';
-  await axios.get(url).then(res=>avatar=res)
+  let avatar=await axios.get(url)
   return avatar;
 }
 
-
-
-
-// to layout the images side by side
-
-{/* <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
-</a>
-<a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
-</a> */}
-
-
-
-
-
-//  All inbuilt themes for stat-cards
-
-// dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+export  async function getGists(loginId) {
+     const url = `https://api.github.com/users/${loginId}/gists`;
+     const gists = await axios.get(url);
+     return gists;
+   }

@@ -2,7 +2,7 @@ import React from 'react';
 export default function UserCard({ user }){
 
   return (
-          <div className="card text-center">
+          <div className="card text-center mt-3 cover-area">
             <div className="card-header">
               <ul className="nav nav-tabs card-header-tabs">
                 <li className="nav-item">
@@ -16,9 +16,12 @@ export default function UserCard({ user }){
                   <div className="img-container">
                     <img className="user-picture" alt="" src={`https://avatars2.githubusercontent.com/u/${user.id}`} />
                   </div>
-                  <div className="user-name d-flex-column mx-3">
-                    <h5>{user.name}</h5>
-                    <h6 className="text-muted">{ user.login }</h6>
+            <div className="user-name d-flex-column mx-3">
+              <div className="d-flex-column">
+                    <h5 >{user.name}</h5>
+                    <h6 className="text-muted text-start">{ user.login }</h6>
+
+              </div>
                   </div>
                 </div>
                 <div className="follow-bttn">
@@ -30,10 +33,10 @@ export default function UserCard({ user }){
               </div>
               <div className='other-details d-flex-column mt-2'>
                 <div className="d-flex">
-                  <i className="fa fa-envelope mx-2"></i><h6>{": "+ user.email}</h6>
+                  <i className="fa fa-envelope mx-2"></i><h6 className="text-muted">{": "+ user.email}</h6>
                 </div>
                 <div className="d-flex">
-                  <i className="fa fa-map mx-2"></i><h6>{": "+user.location}</h6>
+                  <i className="fa fa-map mx-2"></i><h6 className="text-muted">{": "+user.location}</h6>
                 </div>
                 </div>
               </div>
