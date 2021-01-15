@@ -8,7 +8,7 @@ export default function UserStats({ user, gists }) {
 
   return (
     <>
-      <div className="user-stats-container d-flex justify-content-center cover-area ">
+      <div className="user-stats-container cover-area mt-3">
         <div className="row user-stats">
           <div className="col-sm-3">
             <div className="card light-bg">

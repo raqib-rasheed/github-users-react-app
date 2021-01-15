@@ -18,15 +18,20 @@ h1,h2,h3,h4,h5,h6{
   border-radius: 50%;
 }
 
+.charts-container{
+  height: 40vh;
+  width: 100%;
+}
+
 .fas{
   color: black;
   width: 2rem;
 }
 
 .user-stats{
-  width:80%;
+  width:100%;
 }
 
 .light-bg{
-  background-color: rgba(233, 232, 232, 0.719);
+  background-color: rgba(241, 241, 241, 0.603);
 }

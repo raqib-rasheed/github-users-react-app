@@ -2,7 +2,7 @@ import React from 'react';
 export default function UserCard({ user }){
 
   return (
-          <div className="card text-center mt-3 cover-area">
+          <div className="card text-center mt-3">
             <div className="card-header">
               <ul className="nav nav-tabs card-header-tabs">
                 <li className="nav-item">
@@ -31,13 +31,12 @@ export default function UserCard({ user }){
               <div className="bio d-flex mt-2">
                 <p>{ user.bio }</p>
               </div>
-              <div className='other-details d-flex-column mt-2'>
-                <div className="d-flex">
-                  <i className="fa fa-envelope mx-2"></i><h6 className="text-muted">{": "+ user.email}</h6>
-                </div>
-                <div className="d-flex">
-                  <i className="fa fa-map mx-2"></i><h6 className="text-muted">{": "+user.location}</h6>
-                </div>
+        <div className='other-details d-flex-column mt-2'>
+          {user.email && <div className="d-flex">
+             <i className="fa fa-envelope mx-2"></i><h6 className="text-muted">{": " + user.email}</h6></div>}
+          {user.location && <div className="d-flex">
+            <i className="fa fa-map mx-2"></i><h6 className="text-muted">{": " + user.location}</h6>
+          </div>}
                 </div>
               </div>
             </div>
