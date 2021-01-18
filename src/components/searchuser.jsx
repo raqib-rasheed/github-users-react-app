@@ -20,35 +20,40 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 }
 
 
-export default function SearchUser({ setQuery, setUser, setLangImg, query, setGists, user, gists }) {
-  const [userInput, setUserInput] = React.useState('');
-  const [userLanguages,setUserLanguages] = React.useState({})
-  const [isLoading,SetLoading] = React.useState(false)
+export default function SearchUser({
+  setQuery,
+  setUser,
+  query,
+  setGists,
+  user,
+  gists,
+}) {
+  const [userInput, setUserInput] = React.useState("");
+  const [userLanguages, setUserLanguages] = React.useState({});
+  const [isLoading, SetLoading] = React.useState(false);
   const [isError, SetError] = React.useState(false);
 
   const getUserfunc = React.useCallback(async () => {
-    const res = await getUser(query)
-    setUser(res)
-  },[query, setUser]);
-  
+    const res = await getUser(query);
+    setUser(res);
+  }, [query, setUser]);
+
   React.useEffect(() => {
     try {
       SetLoading(true);
       getUserfunc(query);
-      getGists(query)
-        .then(res => setGists(res.data.length))
-      sortedRepoLanguages(user.repos_url)
-        .then(res => setUserLanguages(res))
+      getGists(query).then((res) => setGists(res.data.length));
+      sortedRepoLanguages(user.repos_url).then((res) => setUserLanguages(res));
     } catch (error) {
-      SetLoading(false)
-      throw new Error (error.message)
-    } SetLoading(false)
-  }, [getUserfunc, isLoading, query, setGists, user.repos_url]);
+      SetLoading(false);
+      throw new Error(error.message);
+    }
+    SetLoading(false);
+  }, [getUserfunc, query, setGists, user.repos_url]);
 
   function handleClick() {
-      setQuery(userInput);
+    setQuery(userInput);
   }
-
 
   return (
     <>
@@ -58,13 +63,13 @@ export default function SearchUser({ setQuery, setUser, setLangImg, query, setGi
             type="text"
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
-            className="form-control py-2"
+            className="form-control py-2 light-bg"
             placeholder="search a valid username"
             aria-label="search a valid username"
             aria-describedby="button-addon2"
           />
           <button
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary text-dark"
             onClick={handleClick}
             type="button"
             id="button-addon2"
@@ -79,26 +84,29 @@ export default function SearchUser({ setQuery, setUser, setLangImg, query, setGi
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={3000} 
+          timeout={3000}
         />
-      ) : isError ?
-       <></> :  (
+      ) : isError ? (
+        <></>
+      ) : (
         <>
           <ErrorBoundary
             FallbackComponent={ErrorFallback}
             onReset={() => {
               window.location.reload();
-                }}>
-                
+            }}
+          >
             <UserCard user={user} />
             <UserStats user={user} gists={gists} />
-                {userLanguages && <Charts
-                  user={user}
-                  isLoading={isLoading}
-                  SetError={SetError}
-                  SetLoading={SetLoading}
-                  userLanguages={userLanguages}
-                />}
+            {userLanguages && (
+              <Charts
+                user={user}
+                isLoading={isLoading}
+                SetError={SetError}
+                SetLoading={SetLoading}
+                userLanguages={userLanguages}
+              />
+            )}
           </ErrorBoundary>
         </>
       )}

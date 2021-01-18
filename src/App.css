@@ -1,4 +1,16 @@
 
+.imgg-container{
+  background: url("https://imgur.com/FPH0ozU.jpg");
+  background-repeat: no-repeat;  
+  height: 12rem;
+}
+.login-screen{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 a{
   width: 100%;
   height: 100%s;;
@@ -33,5 +45,13 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .light-bg{
-  background-color: rgba(241, 241, 241, 0.603);
+  background-color: rgba(226, 226, 226, 0.603);
+}
+.light-bgg{
+  background-color: rgba(216, 218, 200, 0.788);
+}
+
+.col-sm-3:first-child,
+.col-sm-3:last-child{
+  padding: 0;
 }

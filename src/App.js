@@ -1,31 +1,27 @@
 import React from 'react'
 import './App.css';
-import SearchUser from './components/searchuser';
-
-
-
+import AuthenticatedApp from "./components/authenticated-app";
+import LoginButton from "./components/login-button";
 
 function App() {
-
-  const [query ,setQuery] = React.useState('raqib-rasheed');
-  const [user, setUser] = React.useState({});
-  const [langImg, setLangImg] = React.useState("");
-  const [gists,setGists] = React.useState(0)
-
-
+  const [loggedUser, setLoggedUser] = React.useState({});
+  const [authenticated, setAuthenticated] = React.useState(false)
+  const isLogged = window.sessionStorage.getItem("logged")
+  
   return (
-    <div className="app-container m-3">
-      <SearchUser
-        query={query}
-        setGists={setGists}
-        setUser={setUser}
-        user={user}
-        setQuery={setQuery}
-        setLangImg={setLangImg}
-        langImg={langImg}
-        gists={gists}
-      />
-    </div>
+    <>
+      {
+        isLogged ? (
+        <AuthenticatedApp
+          loggedUser={loggedUser}
+        />
+      ) : (
+        <LoginButton
+          setUser={setLoggedUser}
+          setAuthenticated={setAuthenticated}
+        />
+      )}
+    </>
   );
 }
 

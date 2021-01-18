@@ -6,34 +6,30 @@ import { Bar, Doughnut } from "react-chartjs-2";
 
 
 
-export default function Charts({ userLanguages, SetLoading, SetError,isLoading,user }) {
-  const [chartData, setChartData] = React.useState(userLanguages)
+export default function Charts({
+  userLanguages,
+  SetLoading,
+  SetError,
+  isLoading,
+  user,
+}) {
+  const [chartData, setChartData] = React.useState(userLanguages);
 
   const setchartInfo = React.useCallback(() => {
     setChartData(userLanguages);
-  },[userLanguages])
+  }, [userLanguages]);
 
   React.useEffect(() => {
-    setchartInfo()
-  }, [])
+    setchartInfo();
+  }, []);
 
   const state = {
     labels: Object.keys(chartData),
     datasets: [
       {
         label: "bytes of Code",
-        backgroundColor: [
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#4B5000",
-          "#003350",
-          "#35014F",
-          "#175000",
-        ],
+        backgroundColor: ["#C9DE00", "#2FDE00", "#00A6B4", "#6800B4"],
+        hoverBackgroundColor: ["#4B5000", "#003350", "#35014F", "#175000"],
         fill: false,
         borderColor: "rgba(0,0,0,.45)",
         borderWidth: 2,
@@ -41,6 +37,8 @@ export default function Charts({ userLanguages, SetLoading, SetError,isLoading,u
       },
     ],
   };
+
+
 
   return (
     <div>
@@ -77,7 +75,10 @@ export default function Charts({ userLanguages, SetLoading, SetError,isLoading,u
           <div className="col-sm-6">
             <div className="card light-bg py-4">
               <div className="card-body">
-                <Bar data={state} options={{ maintainAspectRatio: false }} />
+                <Bar
+                  data={state}
+                  options={{ maintainAspectRatio: false }}
+                />
               </div>
             </div>
           </div>
