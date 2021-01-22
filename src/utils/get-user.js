@@ -59,4 +59,27 @@ export  async function getGists(loginId) {
         }
        return bytesofLanguages;
      }
-   }
+}
+   
+export async function getFollowersList(url) {
+  if (url) {
+    const data = await axios.get(url, {
+      headers: {
+        Authorization: "a0eea53be7eec122c8ce4a33108a8b9e5da6acd1",
+      },
+    });
+    const infos = data.data && data.data;
+    const followersInfo =
+      infos &&
+      infos.slice(0, 20).reduce((acc, crr) => {
+        const login = crr.login;
+        const avatarUrl = crr.avatar_url;
+        const followerGithubUrl = crr.url;
+        acc.push({ login, avatarUrl, followerGithubUrl });
+        return acc;
+      }, []);
+    return followersInfo;
+  } else {
+    return;
+  }
+}

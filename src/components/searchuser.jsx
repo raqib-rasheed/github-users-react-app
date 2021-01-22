@@ -1,11 +1,17 @@
 import React from 'react';
-import { getUser } from '../utils/get-user';
-import { getGists, sortedRepoLanguages } from "../utils/get-user";
+// import { getUser } from '../utils/get-user';
+import {
+  getFollowersList,
+  getGists,
+  sortedRepoLanguages,
+  getUser,
+} from "../utils/get-user";
 import Loader from "react-loader-spinner";
 import Charts from './charts/charts';
 import UserCard from "./user-card";
 import UserStats from "./user-stats";
 import { ErrorBoundary } from "react-error-boundary";
+import ShowFollowers from './display-followers';
 
 
 
@@ -32,11 +38,14 @@ export default function SearchUser({
   const [userLanguages, setUserLanguages] = React.useState({});
   const [isLoading, SetLoading] = React.useState(false);
   const [isError, SetError] = React.useState(false);
-
+  const [followers,setFollowers] = React.useState({})
+  
+  
   const getUserfunc = React.useCallback(async () => {
-    const res = await getUser(query);
-    setUser(res);
-  }, [query, setUser]);
+    getUser(query).then(res => setUser(res))
+    getFollowersList(user.followers_url).then(followers=>setFollowers(followers))
+  }, [query, setUser, user.followers_url]);
+  
 
   React.useEffect(() => {
     try {
@@ -97,6 +106,7 @@ export default function SearchUser({
             }}
           >
             <UserCard user={user} />
+                <ShowFollowers followers={followers } />
             <UserStats user={user} gists={gists} />
             {userLanguages && (
               <Charts
