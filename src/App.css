@@ -1,57 +1,67 @@
-
-.imgg-container{
+.imgg-container {
   background: url("https://imgur.com/FPH0ozU.jpg");
-  background-repeat: no-repeat;  
+  background-repeat: no-repeat;
   height: 12rem;
 }
-.login-screen{
+.login-screen {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-a{
+a {
   width: 100%;
-  height: 100%s;;
+  height: 100%s;
 }
-a img{
+a img {
   width: 100%;
   height: 16rem;
 }
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
-
-.user-picture{
+.user-picture {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
 }
 
-.charts-container{
+.charts-container {
   height: 40vh;
   width: 100%;
 }
 
-.fas{
+.fas {
   color: black;
   width: 2rem;
 }
 
-.user-stats{
-  width:100%;
+.user-stats {
+  width: 100%;
 }
 
-.light-bg{
+.light-bg {
   background-color: rgba(226, 226, 226, 0.603);
 }
-.light-bgg{
+.light-bgg {
   background-color: rgba(216, 218, 200, 0.788);
 }
 
-.col-sm-3:first-child,
-.col-sm-3:last-child{
-  padding: 0;
+@media (min-width: 580px) {
+  .col-sm-3:first-child,
+  .col-sm-3:last-child {
+    padding: 0;
+  }
+}
+@media (max-width: 580px) {
+  .col-sm-3 {
+    margin: 0.25rem;
+  }
 }

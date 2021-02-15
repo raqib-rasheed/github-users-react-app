@@ -1,10 +1,7 @@
 // import axios from "axios"
-import React from "react"
+import React from "react";
 import Loader from "react-loader-spinner";
 import { Bar, Doughnut } from "react-chartjs-2";
-
-
-
 
 export default function Charts({
   userLanguages,
@@ -37,8 +34,6 @@ export default function Charts({
       },
     ],
   };
-
-
 
   return (
     <div>
@@ -75,10 +70,7 @@ export default function Charts({
           <div className="col-sm-6">
             <div className="card light-bg py-4">
               <div className="card-body">
-                <Bar
-                  data={state}
-                  options={{ maintainAspectRatio: false }}
-                />
+                <Bar data={state} options={{ maintainAspectRatio: false }} />
               </div>
             </div>
           </div>
@@ -119,8 +111,3 @@ export default function Charts({
     </div>
   );
 }
-
-
-
-
-

@@ -1,5 +1,4 @@
 export default function ShowFollowers({ followers }) {
-  console.log(followers)
   return (
     <div className="card text-center mt-3">
       <div className="card-header">
@@ -14,7 +13,9 @@ export default function ShowFollowers({ followers }) {
       <div className="overflow-auto followers-container">
         {followers && followers.length > 1 ? (
           followers.map((follower) => {
-            const follwerAccountLink = follower.followerGithubUrl.replace("api.", "").replace("/users", '')
+            const follwerAccountLink = follower.followerGithubUrl
+              .replace("api.", "")
+              .replace("/users", "");
             return (
               <div id={follower.login} className="card-body">
                 <div className="d-flex justify-content-between">
@@ -31,7 +32,8 @@ export default function ShowFollowers({ followers }) {
                         <a
                           href={follwerAccountLink}
                           className="text-decoration-none"
-                        target="blank">
+                          target="blank"
+                        >
                           <h5 className="text-start text-dark">
                             {follower.login}
                           </h5>

@@ -1,19 +1,17 @@
-import React from 'react';
-// import { getUser } from '../utils/get-user';
+import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import Loader from "react-loader-spinner";
+
 import {
   getFollowersList,
   getGists,
   sortedRepoLanguages,
   getUser,
 } from "../utils/get-user";
-import Loader from "react-loader-spinner";
-import Charts from './charts/charts';
+import Charts from "./charts/charts";
 import UserCard from "./user-card";
 import UserStats from "./user-stats";
-import { ErrorBoundary } from "react-error-boundary";
-import ShowFollowers from './display-followers';
-
-
+import ShowFollowers from "./display-followers";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -24,7 +22,6 @@ function ErrorFallback({ error, resetErrorBoundary }) {
     </div>
   );
 }
-
 
 export default function SearchUser({
   setQuery,
@@ -38,21 +35,21 @@ export default function SearchUser({
   const [userLanguages, setUserLanguages] = React.useState({});
   const [isLoading, SetLoading] = React.useState(false);
   const [isError, SetError] = React.useState(false);
-  const [followers,setFollowers] = React.useState({})
-  
-  
+  const [followers, setFollowers] = React.useState({});
+
   const getUserfunc = React.useCallback(async () => {
-    getUser(query).then(res => setUser(res))
-    getFollowersList(user.followers_url).then(followers=>setFollowers(followers))
+    getUser(query).then((res) => setUser(res));
+    getFollowersList(user.followers_url).then((followers) =>
+      setFollowers(followers)
+    );
   }, [query, setUser, user.followers_url]);
-  
 
   React.useEffect(() => {
     try {
-      SetLoading(true);
       getUserfunc(query);
       getGists(query).then((res) => setGists(res.data.length));
       sortedRepoLanguages(user.repos_url).then((res) => setUserLanguages(res));
+      SetLoading(true);
     } catch (error) {
       SetLoading(false);
       throw new Error(error.message);
@@ -79,7 +76,7 @@ export default function SearchUser({
           />
           <button
             className="btn btn-outline-secondary text-dark"
-            onClick={handleClick}
+            onClick={() => handleClick}
             type="button"
             id="button-addon2"
           >
@@ -93,7 +90,7 @@ export default function SearchUser({
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={3000}
+          timeout={1000}
         />
       ) : isError ? (
         <></>
@@ -106,7 +103,7 @@ export default function SearchUser({
             }}
           >
             <UserCard user={user} />
-                <ShowFollowers followers={followers } />
+            <ShowFollowers followers={followers} />
             <UserStats user={user} gists={gists} />
             {userLanguages && (
               <Charts

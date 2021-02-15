@@ -1,6 +1,5 @@
-import React from 'react';
-export default function UserCard({ user }){
-
+import React from "react";
+export default function UserCard({ user }) {
   return (
     <div className="card text-center mt-3">
       <div className="card-header">
@@ -31,7 +30,9 @@ export default function UserCard({ user }){
           </div>
           <div className="follow-bttn">
             <a
-              href={user.url && (user.url).replace("api.", "").replace('users','')}
+              href={
+                user.url && user.url.replace("api.", "").replace("users", "")
+              }
               classname="text-decoration-none"
               target="blank"
             >
